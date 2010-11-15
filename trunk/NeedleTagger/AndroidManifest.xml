@@ -5,6 +5,7 @@
 	<application android:icon="@drawable/icon" android:label="@string/app_name"
 		android:debuggable="true">
 		<activity android:name="org.softwaregeeks.needletagger.MusicListActivity"
+			android:launchMode="singleTask"
 			android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />

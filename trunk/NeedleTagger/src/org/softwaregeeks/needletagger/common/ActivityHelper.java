@@ -2,7 +2,10 @@ package org.softwaregeeks.needletagger.common;
 
 import org.softwaregeeks.needletagger.ConfigurationActivity;
 import org.softwaregeeks.needletagger.InformationActivity;
+import org.softwaregeeks.needletagger.MusicListActivity;
 import org.softwaregeeks.needletagger.R;
+
+import com.admob.android.ads.ac;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -11,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 public class ActivityHelper
@@ -18,6 +22,7 @@ public class ActivityHelper
 	private static ProgressDialog progressDialog;
 	private static ImageButton buttonConfiguration;
 	private static ImageButton buttonInformation;
+	private static ImageView imageViewLogo;
 	private static OnClickListener onClickListener;
 	
 	public static void setStartProcess(Activity activity)
@@ -42,12 +47,14 @@ public class ActivityHelper
 	}
 	
 	private static void loadNavigationBar(Activity activity) {
+		imageViewLogo = (ImageView) activity.findViewById(R.id.logo);
 		buttonConfiguration = (ImageButton) activity.findViewById(R.id.configuration);
 		buttonInformation = (ImageButton) activity.findViewById(R.id.infomation);
 	}
 	
 	private static void setNavigationBarOnClickListener()
 	{
+		imageViewLogo.setOnClickListener(onClickListener);
 		buttonConfiguration.setOnClickListener(onClickListener);
 		buttonInformation.setOnClickListener(onClickListener);
 	}
@@ -61,20 +68,27 @@ public class ActivityHelper
 			{
 				switch (v.getId())
 				{
+				case R.id.logo:
+					{
+						Intent intent = new Intent(activity.getApplicationContext(), MusicListActivity.class);
+						activity.startActivity(intent);
+						activity.overridePendingTransition(0,0);
+						activity.finish();
+					}
+					break;
 				case R.id.configuration:
 					{
 						Intent intent = new Intent(activity.getApplicationContext(), ConfigurationActivity.class);
 						activity.startActivity(intent);
-//						activity.overridePendingTransition(0,0);
-						//activity.finish();
+						activity.overridePendingTransition(0,0);
 					}
 					break;
 				case R.id.infomation:
 					{
 						Intent intent = new Intent(activity.getApplicationContext(), InformationActivity.class);
 						activity.startActivity(intent);
-//						activity.overridePendingTransition(0,0);
-						//activity.finish();
+						activity.overridePendingTransition(0,0);
+//						activity.finish();
 					}
 					break;
 				}

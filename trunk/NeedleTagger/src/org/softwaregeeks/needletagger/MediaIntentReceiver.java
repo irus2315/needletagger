@@ -18,12 +18,22 @@ public class MediaIntentReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
-		ConfigurationManager.getInstance().checkLoad(context);
-		if( !ConfigurationManager.getInstance().isPlayerLink() )
-			return;
+		ConfigurationManager.checkLoad(context);
 		
 		Music music = getMusic(context, intent);
 		if( music.getId() == 0L )
+			return;
+		
+		if(music.isPlaying())
+			ConfigurationManager.getNowPlayingMusic().set(music);
+		else
+			ConfigurationManager.getNowPlayingMusic().reset();
+		
+		context.sendBroadcast(new Intent(MusicListActivity.UPDATED_INTENT));
+		
+		// Notification Bar
+		//
+		if( !ConfigurationManager.isPlayerLink() )
 			return;
 		
 		if(music.isPlaying())
@@ -35,17 +45,12 @@ public class MediaIntentReceiver extends BroadcastReceiver {
 			sendIntent.putExtra("album",music.getAlbum());
 			sendIntent.putExtra("path",music.getPath());
 			sendIntent.putExtra("albumId",music.getAlbumId());
-			ConfigurationManager.getInstance().getNowPlayingMusic().set(music);
-			
 			onNotify(context, sendIntent, music);
 		}
 		else
 		{
-			ConfigurationManager.getInstance().getNowPlayingMusic().reset();
 			offNotify(context);
 		}
-		
-		context.sendBroadcast(new Intent(MusicListActivity.UPDATED_INTENT));
 	}
 	
 	private Music getMusic(Context context, Intent intent)

@@ -73,9 +73,10 @@ containing a value of this type.
         public static final int icon_play=0x7f020010;
         public static final int icon_tag=0x7f020011;
         public static final int img_album_unknown=0x7f020012;
-        public static final int infomation=0x7f020013;
-        public static final int round_box_colors1=0x7f020014;
-        public static final int search=0x7f020015;
+        public static final int img_logo=0x7f020013;
+        public static final int infomation=0x7f020014;
+        public static final int round_box_colors1=0x7f020015;
+        public static final int search=0x7f020016;
     }
     public static final class id {
         public static final int album=0x7f050007;
@@ -84,24 +85,25 @@ containing a value of this type.
         public static final int artist=0x7f050005;
         public static final int artistCaption=0x7f050004;
         public static final int artwork=0x7f050009;
-        public static final int cancel=0x7f050017;
-        public static final int configuration=0x7f05000c;
+        public static final int cancel=0x7f050018;
+        public static final int configuration=0x7f05000d;
         public static final int header=0x7f050000;
-        public static final int infomation=0x7f05000d;
-        public static final int keyword=0x7f05000f;
-        public static final int listView=0x7f050011;
-        public static final int list_back=0x7f050012;
-        public static final int message=0x7f050015;
-        public static final int nowplay=0x7f050013;
+        public static final int infomation=0x7f05000e;
+        public static final int keyword=0x7f050010;
+        public static final int listView=0x7f050012;
+        public static final int list_back=0x7f050013;
+        public static final int logo=0x7f05000b;
+        public static final int message=0x7f050016;
+        public static final int nowplay=0x7f050014;
         public static final int ok=0x7f05000a;
         public static final int path=0x7f050001;
-        public static final int progress=0x7f05000b;
-        public static final int search=0x7f050010;
-        public static final int send=0x7f050016;
+        public static final int progress=0x7f05000c;
+        public static final int search=0x7f050011;
+        public static final int send=0x7f050017;
         public static final int title=0x7f050003;
         public static final int titleCaption=0x7f050002;
-        public static final int track=0x7f050014;
-        public static final int webview=0x7f05000e;
+        public static final int track=0x7f050015;
+        public static final int webview=0x7f05000f;
     }
     public static final class layout {
         public static final int configuration=0x7f030000;
