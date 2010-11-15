@@ -2,6 +2,7 @@ package org.softwaregeeks.needletagger;
 
 import org.softwaregeeks.needletagger.alsong.AlsongLyricCrawler;
 import org.softwaregeeks.needletagger.common.ActivityHelper;
+import org.softwaregeeks.needletagger.common.ConfigurationManager;
 import org.softwaregeeks.needletagger.common.Music;
 import org.softwaregeeks.needletagger.common.MusicManager;
 
@@ -103,6 +104,7 @@ public class EditorActivity extends Activity {
 						break;
 					case MESSAGE_SAVE:
 					{
+						MusicManager.playMusic(EditorActivity.this);
 						Toast.makeText(EditorActivity.this, "SAVED",
 								Toast.LENGTH_LONG).show();
 					}
@@ -120,6 +122,21 @@ public class EditorActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				switch (v.getId()) {
+				case R.id.title:
+				{
+					trackEditText.setInputType(1);
+				}
+				break;
+				case R.id.album:
+				{
+					albumEditText.setInputType(1);
+				}
+				break;
+				case R.id.artist:
+				{
+					artistEditText.setInputType(1);
+				}
+				break;
 				case R.id.artwork: {
 					showDialog(DIALOG_CHOICE);
 				}
@@ -190,11 +207,20 @@ public class EditorActivity extends Activity {
 		artistEditText = (EditText) findViewById(R.id.artist);
 		albumEditText = (EditText) findViewById(R.id.album);
 		pathTextView = (TextView) findViewById(R.id.path);
-
+		
+		trackEditText.setOnClickListener(onClickListener);
+		artistEditText.setOnClickListener(onClickListener);
+		albumEditText.setOnClickListener(onClickListener);
+		trackEditText.setInputType(0);
+		artistEditText.setInputType(0);
+		albumEditText.setInputType(0);
+		
 		okButton = (Button) findViewById(R.id.ok);
+		okButton.setTypeface(ConfigurationManager.getFont(getAssets()));
 		okButton.setOnClickListener(onClickListener);
 
 		alsongButton = (Button) findViewById(R.id.alsong);
+		alsongButton.setTypeface(ConfigurationManager.getFont(getAssets()));
 		alsongButton.setOnClickListener(onClickListener);
 	}
 
@@ -238,7 +264,8 @@ public class EditorActivity extends Activity {
 	}
 
 	public void save() {
-
+		
+		MusicManager.stopMusic(this);
 		ActivityHelper.setStartProcess(this);
 		processThread = new Thread(new Runnable() {
 			@Override

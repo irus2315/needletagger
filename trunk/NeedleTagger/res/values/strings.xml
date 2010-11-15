@@ -18,7 +18,7 @@
 	<string name="titleCaption">제목</string>
 	<string name="artistCaption">가수</string>
 	<string name="albumCaption">앨범</string>
-	<string name="alsong">ID3Tag 자동찾기</string>
+	<string name="alsong">Tag정보 자동찾기</string>
 	
 	<string name="dialogProcessTitleCaption">처리중...</string>
 	<string name="dialogArtworkCaption">노래제목과 가수명을 바탕으로 인터넷에서 이미지를 자동으로 가져옵니다.</string>

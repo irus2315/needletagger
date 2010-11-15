@@ -31,7 +31,15 @@ public class MusicManager {
 	{
 		if( ConfigurationManager.getDevice().equals("HTC Desire") )
 		{
-			context.sendBroadcast(new Intent("com.android.music.musicservicecommand.pause"));
+			context.sendBroadcast(new Intent("com.htc.music.musicservicecommand.pause"));
+		}
+	}
+	
+	public static void playMusic(Context context)
+	{
+		if( ConfigurationManager.getDevice().equals("HTC Desire") )
+		{
+			context.sendBroadcast(new Intent("com.htc.music.musicservicecommand.play"));
 		}
 	}
 	

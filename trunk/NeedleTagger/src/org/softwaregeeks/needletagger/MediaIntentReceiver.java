@@ -83,6 +83,8 @@ public class MediaIntentReceiver extends BroadcastReceiver {
 		{
 		}
 		
+		String path = MediaContentProviderHelper.getSongPath(context,track);
+		
 		if( id == null )
 			id = 0L;
 		
@@ -104,7 +106,11 @@ public class MediaIntentReceiver extends BroadcastReceiver {
 			artist = "";
 		}
 		
-		String path = MediaContentProviderHelper.getSongPath(context,track);
+		if( path == null || "".equals(path) || "null".equals(path) )
+		{
+			path = "";
+		}
+		
 		Music music = new Music();
 		music.setId(id);
 		music.setAlbum(album);

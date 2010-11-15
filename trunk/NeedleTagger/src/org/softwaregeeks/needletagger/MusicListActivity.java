@@ -35,6 +35,7 @@ public class MusicListActivity extends Activity
 	    	ActivityHelper.setHeaderProgressBar(MusicListActivity.this,false);
 	    }
 	};
+	
 	private String keyword;
 	private OnClickListener onClickListener;
 	
@@ -89,6 +90,8 @@ public class MusicListActivity extends Activity
 		editKeyword = (EditText)findViewById(R.id.keyword);
 		buttonSearch = (ImageButton)findViewById(R.id.search);
 		buttonSearch.setOnClickListener(onClickListener);
+		editKeyword.setOnClickListener(onClickListener);
+		editKeyword.setInputType(0);
 	}
 	
 	public void setOnClickListener()
@@ -100,6 +103,11 @@ public class MusicListActivity extends Activity
 			{
 				switch (v.getId())
 				{
+				case R.id.keyword:
+					{
+						editKeyword.setInputType(1);
+					}
+				break;
 				case R.id.search:
 					{
 						keyword = editKeyword.getText().toString();
