@@ -11,9 +11,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -58,6 +56,7 @@ public class EditorActivity extends Activity {
 	}
 
 	private void setInit() {
+		MediaIntentReceiver.offNotify(this);
 		ActivityHelper.setNavigationBar(this);
 		ActivityHelper.setHeaderProgressBar(this, false);
 
@@ -251,7 +250,7 @@ public class EditorActivity extends Activity {
 				MusicManager.updateMusicMetadata(EditorActivity.this, updatedMusic);
 				
 				// Run MediaScanner
-				sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+				MusicManager.performMediaScanner(EditorActivity.this);
 				
 				Message message = Message.obtain(processHandler, MESSAGE_SAVE, null);
 				processHandler.sendMessage(message);

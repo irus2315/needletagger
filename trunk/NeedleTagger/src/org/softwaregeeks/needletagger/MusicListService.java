@@ -2,6 +2,7 @@ package org.softwaregeeks.needletagger;
 
 import java.util.ArrayList;
 
+import org.softwaregeeks.needletagger.common.ConfigurationManager;
 import org.softwaregeeks.needletagger.common.Music;
 import org.softwaregeeks.needletagger.utils.MediaContentProviderHelper;
 
@@ -23,6 +24,8 @@ public class MusicListService implements Runnable
 		if( keyword != null )
 		{
 			String where = MediaStore.Audio.Media.TITLE + " like '%" + keyword + "%' OR " + MediaStore.Audio.Media.ARTIST + " like '%" + keyword + "%'";
+			
+			// Playing List
 			list = MediaContentProviderHelper.getAll(getContext(),where);
 		}
 		else

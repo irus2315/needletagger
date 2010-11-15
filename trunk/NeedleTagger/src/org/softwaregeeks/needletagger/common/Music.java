@@ -12,9 +12,11 @@ public class Music {
 	private String artist;
 	private String mimeType;
 	private Bitmap artwork;
+	private boolean isPlaying;
 	
 	public Music()
 	{
+		reset();
 	}
 	
 	public Music(Music music)
@@ -22,6 +24,11 @@ public class Music {
 		if( music == null )
 			return;
 		
+		set(music);
+	}
+	
+	public void set(Music music)
+	{
 		this.id = music.getId();
 		this.album = music.getAlbum().trim();
 		this.path = music.getPath().trim();
@@ -29,6 +36,17 @@ public class Music {
 		this.artist = music.getArtist().trim();
 		this.artwork = music.getArtwork();
 		this.albumId = music.getAlbumId();
+	}
+	
+	public void reset()
+	{
+		this.id = 0L;
+		this.album = null;
+		this.path = null;
+		this.track = null;
+		this.artist = null;
+		this.artwork = null;
+		this.albumId = 0L;
 	}
 	
 	public void setPath(String path) {
@@ -85,5 +103,13 @@ public class Music {
 
 	public Long getAlbumId() {
 		return albumId;
+	}
+
+	public void setPlaying(boolean isPlaying) {
+		this.isPlaying = isPlaying;
+	}
+
+	public boolean isPlaying() {
+		return isPlaying;
 	}
 }

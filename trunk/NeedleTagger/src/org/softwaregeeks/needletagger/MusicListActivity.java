@@ -7,7 +7,10 @@ import org.softwaregeeks.needletagger.common.ConfigurationManager;
 import org.softwaregeeks.needletagger.common.Music;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,6 +25,16 @@ import android.widget.ListView;
 
 public class MusicListActivity extends Activity
 {
+	public static final String UPDATED_INTENT = "org.softwaregeeks.needletagger.updated";
+	private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+	    @Override
+	    public void onReceive(Context context, Intent intent) {
+	    	ActivityHelper.setHeaderProgressBar(MusicListActivity.this,true);
+	    	setNowPlayMusic(musicList);
+	    	updateListView();
+	    	ActivityHelper.setHeaderProgressBar(MusicListActivity.this,false);
+	    }
+	};
 	private String keyword;
 	private OnClickListener onClickListener;
 	
@@ -46,6 +59,10 @@ public class MusicListActivity extends Activity
 		setInit();
 		setListView();
 		setHandler();
+		
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction(UPDATED_INTENT);
+		registerReceiver(broadcastReceiver,intentFilter);
     }
 	
 	@Override
@@ -53,8 +70,13 @@ public class MusicListActivity extends Activity
 		super.onStart();
 		loadData();
 	}
-
-
+	
+	@Override
+	protected void onDestroy()
+	{
+		super.onDestroy();
+		unregisterReceiver(broadcastReceiver);
+	}
 
 	private void setInit()
 	{
@@ -138,6 +160,7 @@ public class MusicListActivity extends Activity
 						if( list != null )
 						{
 							musicList.clear();
+							setNowPlayMusic(list);
 							musicList.addAll(list);
 							updateListView();
 						}
@@ -147,6 +170,25 @@ public class MusicListActivity extends Activity
 				}
 			}
 		};
+	}
+	
+	private void setNowPlayMusic(ArrayList<Music> list)
+	{
+		if( list == null )
+			return;
+		
+		Music music = ConfigurationManager.getNowPlayingMusic();
+		if( music.getId() != 0 && (keyword == null || "".equals(keyword)) )
+		{
+			if( list.size() > 0 )
+			{
+				Music prevMusic = list.get(0);
+				if( prevMusic != null && prevMusic.isPlaying() )
+					list.remove(0);
+			}
+			music.setPlaying(true);
+			list.add(0,music);
+		}
 	}
 	
 	private void loadData()

@@ -13,13 +13,16 @@
 		</activity>
 
 		<activity android:name="org.softwaregeeks.needletagger.EditorActivity"
-			android:screenOrientation="portrait" android:launchMode="singleTask">
+			android:launchMode="singleTask"
+			android:screenOrientation="portrait">
 		</activity>
 
 		<activity android:name="org.softwaregeeks.needletagger.InformationActivity"
+			android:launchMode="singleTask"
 			android:screenOrientation="portrait" />
 
 		<activity android:name="org.softwaregeeks.needletagger.ConfigurationActivity"
+			android:launchMode="singleTask"
 			android:screenOrientation="portrait" />
 
 		<activity android:name="org.softwaregeeks.needletagger.ReportDialog"
@@ -34,10 +37,7 @@
 				<action android:name="com.android.music.queuechanged" />
 				<action android:name="com.android.music.playbackcomplete" />
 				<action android:name="com.android.music.asyncopencomplete" />
-				<action android:name="com.android.music.musicservicecommand.togglepause" />
 				<action android:name="com.android.music.musicservicecommand.pause" />
-				<action android:name="com.android.music.musicservicecommand.previous" />
-				<action android:name="com.android.music.musicservicecommand.next" />
 
 				<!-- HTC -->
 				<action android:name="com.htc.music.playstatechanged" />
@@ -45,22 +45,15 @@
 				<action android:name="com.htc.music.queuechanged" />
 				<action android:name="com.htc.music.playbackcomplete" />
 				<action android:name="com.htc.music.asyncopencomplete" />
-				<action android:name="com.htc.music.musicservicecommand.togglepause" />
-				<!-- <action android:name="com.htc.music.musicservicecommand.pause" /> 
-					<action android:name="com.htc.music.musicservicecommand.previous" /> <action 
-					android:name="com.htc.music.musicservicecommand.next" /> -->
-
+				<action android:name="com.htc.music.musicservicecommand.pause" />
+				
 				<!-- Samsung -->
-				<action android:name="musicPlayer.service.updateMediaInfo" />
 				<action android:name="musicPlayer.service.updateMediaInfo" />
 				<action android:name="com.sec.android.app.music.metachanged" />
 				<action android:name="com.sec.android.app.music.queuechanged" />
 				<action android:name="com.sec.android.app.music.playbackcomplete" />
 				<action android:name="com.sec.android.app.music.asyncopencomplete" />
-				<action android:name="com.sec.android.app.music.musicservicecommand.togglepause" />
 				<action android:name="com.sec.android.app.music.musicservicecommand.pause" />
-				<action android:name="com.sec.android.app.music.musicservicecommand.previous" />
-				<action android:name="com.sec.android.app.music.musicservicecommand.next" />
 			</intent-filter>
 		</receiver>
 		

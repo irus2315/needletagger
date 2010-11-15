@@ -6,9 +6,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.os.Build;
+import android.preference.PreferenceManager;
 
 public class ConfigurationManager {
 	
+	private static Music nowPlayingMusic = new Music();
 	private static boolean isLoaded = false;
 	public static final String CONFIGURATION_KEY = "preference";
 	public static final String CONFIGURATION_REPORTING = "reporting";
@@ -16,6 +19,7 @@ public class ConfigurationManager {
 	public static final String CONFIGURATION_ENABLE_SYSTEM_FONT = "font";
 	
 	public static ConfigurationManager instance = new ConfigurationManager();
+	private static String device;
 	private static Locale systemLocale;
 	private static Typeface font;
 	private static boolean isReporting = false;
@@ -45,11 +49,12 @@ public class ConfigurationManager {
 	
 	public static void load(Context context)
 	{
-		SharedPreferences sharedPreferences = context.getSharedPreferences(CONFIGURATION_KEY,Context.MODE_PRIVATE);
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 		setReporting(sharedPreferences.getBoolean(CONFIGURATION_REPORTING,true));
 		setPlayerLink(sharedPreferences.getBoolean(CONFIGURATION_PLAYER_LINK,true));
 		setEnableSystemFont(sharedPreferences.getBoolean(CONFIGURATION_ENABLE_SYSTEM_FONT,true));
 		setSystemLocale(context.getResources().getConfiguration().locale);
+		device = Build.MODEL;
 	}
 
 	public static void setReporting(boolean isReporting) {
@@ -90,5 +95,21 @@ public class ConfigurationManager {
 
 	public static Locale getSystemLocale() {
 		return systemLocale;
+	}
+
+	public static void setDevice(String device) {
+		ConfigurationManager.device = device;
+	}
+
+	public static String getDevice() {
+		return device;
+	}
+
+	public static void setNowPlayingMusic(Music nowPlayingMusic) {
+		ConfigurationManager.nowPlayingMusic = nowPlayingMusic;
+	}
+
+	public static Music getNowPlayingMusic() {
+		return nowPlayingMusic;
 	}
 }

@@ -14,10 +14,27 @@ import org.softwaregeeks.needletagger.utils.ArtworkUtils;
 import org.softwaregeeks.needletagger.utils.HttpUtils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 
 public class MusicManager {
+	
+	public static void performMediaScanner(Context context)
+	{
+		context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+	}
+	
+	public static void stopMusic(Context context)
+	{
+		if( ConfigurationManager.getDevice().equals("HTC Desire") )
+		{
+			context.sendBroadcast(new Intent("com.android.music.musicservicecommand.pause"));
+		}
+	}
+	
 	public static void updateMusicMetadata(Context context, Music music) {
 
 		if (music == null || music.getPath() == null

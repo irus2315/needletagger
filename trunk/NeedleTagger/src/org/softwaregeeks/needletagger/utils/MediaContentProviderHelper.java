@@ -80,6 +80,8 @@ public class MediaContentProviderHelper {
 	}
 	
 	public static String getSongPath(Context context, String title) {
+		
+		title = title.replaceAll("'","''");
 		Cursor c = query(context, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
 				new String[] { MediaStore.Audio.Media.DATA },
 				MediaStore.Audio.Media.TITLE + "='" + title + "'", null, null);

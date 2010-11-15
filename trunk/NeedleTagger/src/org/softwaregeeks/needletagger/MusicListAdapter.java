@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MusicListAdapter extends BaseAdapter
@@ -46,6 +47,7 @@ public class MusicListAdapter extends BaseAdapter
     }
 	
 	static class ViewHolder {
+		ImageView nowPlayImageView;
 		TextView trackTextView;
 		TextView artistTextView;
 	}
@@ -60,6 +62,7 @@ public class MusicListAdapter extends BaseAdapter
     	{
     		holder = new ViewHolder();
     		v = inflater.inflate(layout, parent, false);
+    		holder.nowPlayImageView = (ImageView) v.findViewById(R.id.nowplay);
     		holder.trackTextView = (TextView) v.findViewById(R.id.track);
     		holder.artistTextView = (TextView) v.findViewById(R.id.artist);
     		holder.trackTextView.setTypeface(typeface);
@@ -75,6 +78,11 @@ public class MusicListAdapter extends BaseAdapter
     	Music music = list.get(position);
     	holder.trackTextView.setText(music.getTrack());
     	holder.artistTextView.setText(music.getArtist());
+    	
+    	if(music.isPlaying())
+    		holder.nowPlayImageView.setVisibility(View.VISIBLE);
+    	else
+    		holder.nowPlayImageView.setVisibility(View.GONE);
     	
     	if (position % 2 != 0)
 			v.setBackgroundResource(R.drawable.bg_none);

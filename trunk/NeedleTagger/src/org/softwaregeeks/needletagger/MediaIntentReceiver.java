@@ -1,6 +1,7 @@
 package org.softwaregeeks.needletagger;
 
 import org.softwaregeeks.needletagger.common.ConfigurationManager;
+import org.softwaregeeks.needletagger.common.Music;
 import org.softwaregeeks.needletagger.utils.MediaContentProviderHelper;
 
 import android.app.Notification;
@@ -12,21 +13,51 @@ import android.content.Intent;
 
 public class MediaIntentReceiver extends BroadcastReceiver {
 	
-	public int NOTIFICATION_ID = 300000;
+	public static final int NOTIFICATION_ID = 300000;
 	
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
-		ConfigurationManager.load(context);
-		if( !ConfigurationManager.isPlayerLink() )
+		ConfigurationManager.getInstance().checkLoad(context);
+		if( !ConfigurationManager.getInstance().isPlayerLink() )
 			return;
 		
+		Music music = getMusic(context, intent);
+		if( music.getId() == 0L )
+			return;
+		
+		if(music.isPlaying())
+		{
+			Intent sendIntent = new Intent(context,EditorActivity.class);
+			sendIntent.putExtra("id",music.getId());
+			sendIntent.putExtra("track",music.getTrack());
+			sendIntent.putExtra("artist",music.getArtist());
+			sendIntent.putExtra("album",music.getAlbum());
+			sendIntent.putExtra("path",music.getPath());
+			sendIntent.putExtra("albumId",music.getAlbumId());
+			ConfigurationManager.getInstance().getNowPlayingMusic().set(music);
+			
+			onNotify(context, sendIntent, music);
+		}
+		else
+		{
+			ConfigurationManager.getInstance().getNowPlayingMusic().reset();
+			offNotify(context);
+		}
+		
+		context.sendBroadcast(new Intent(MusicListActivity.UPDATED_INTENT));
+	}
+	
+	private Music getMusic(Context context, Intent intent)
+	{
 		String intentAction = intent.getAction();
+		boolean isPlaying = false;
+		
 		Long id = null;
 		String track = null;
 		String artist = null;
 		String album = null;
-		boolean isPlaying = false;
+		Long albumId = null;
 		
 		if( intentAction.startsWith("com.htc.music") || intentAction.startsWith("com.android.music") )
 		{
@@ -34,46 +65,63 @@ public class MediaIntentReceiver extends BroadcastReceiver {
 			track = intent.getStringExtra("track");
 			artist = intent.getStringExtra("artist");
 			album = intent.getStringExtra("album");
+			albumId = (long) intent.getIntExtra("albumid",0);
 			isPlaying = intent.getBooleanExtra("isplaying",false);
 			
 			if( intentAction.startsWith("com.android.music") && id != 0L )
 				isPlaying = false;
-			else
-				isPlaying = true;
 		}
 		else if( intentAction.startsWith("com.sec.android") )
 		{
 		}
 		else
 		{
-			return;
+		}
+		
+		if( id == null )
+			id = 0L;
+		
+		if( albumId == null )
+			albumId = 0L;
+		
+		if( track == null || "".equals(track) || "null".equals(track) )
+		{
+			track = "";
+		}
+		
+		if( artist == null || "".equals(artist) || "null".equals(artist) )
+		{
+			artist = "";
+		}
+		
+		if( album == null || "".equals(album) || "null".equals(album) )
+		{
+			artist = "";
 		}
 		
 		String path = MediaContentProviderHelper.getSongPath(context,track);
+		Music music = new Music();
+		music.setId(id);
+		music.setAlbum(album);
+		music.setTrack(track);
+		music.setArtist(artist);
+		music.setPlaying(isPlaying);
+		music.setPath(path);
+		music.setAlbumId(albumId);
 		
-		Intent sendIntent = new Intent(context,EditorActivity.class);
-		sendIntent.putExtra("id",id);
-		sendIntent.putExtra("track",track);
-		sendIntent.putExtra("artist",artist);
-		sendIntent.putExtra("album",album);
-		sendIntent.putExtra("path",path);
-		
-		if(isPlaying)
-			onNotify(context, sendIntent);
-		else
-			offNotify(context);
+		return music;
 	}
 
-	private void onNotify(Context context, Intent sendIntent)
+	public static void onNotify(Context context, Intent sendIntent, Music music)
 	{
 		final PendingIntent pendingIntent = PendingIntent.getActivity(context,NOTIFICATION_ID, sendIntent,Intent.FLAG_ACTIVITY_NEW_TASK);
 		final Notification notification = new Notification(R.drawable.icon_tag,"NeedleTagger", System.currentTimeMillis());
-		notification.setLatestEventInfo(context,"NeedleTagger","MP3 IDTag Editor",pendingIntent);
+		notification.setLatestEventInfo(context,"NeedleTagger, ID3Tag Editor",music.getPath(),pendingIntent);
 		final NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.notify(NOTIFICATION_ID, notification);
 	}
 	
-	private void offNotify(Context context)
+	public static void offNotify(Context context)
 	{
 		final NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancel(NOTIFICATION_ID);
