@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class InformationActivity extends Activity {
 	
-	private static final String url = "http://m.daum.net/";
+	private static final String url = "http://needletagger.appspot.com/mobile.jsp";
 	private WebView webview;
 
 	@Override
