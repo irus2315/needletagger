@@ -105,7 +105,7 @@ public class EditorActivity extends Activity {
 					case MESSAGE_SAVE:
 					{
 						MusicManager.playMusic(EditorActivity.this);
-						Toast.makeText(EditorActivity.this, "SAVED",
+						Toast.makeText(EditorActivity.this, getString(R.string.saveMessage),
 								Toast.LENGTH_LONG).show();
 					}
 						break;

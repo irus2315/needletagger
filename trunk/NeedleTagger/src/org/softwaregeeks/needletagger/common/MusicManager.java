@@ -39,7 +39,8 @@ public class MusicManager {
 	{
 		if( ConfigurationManager.getDevice().equals("HTC Desire") )
 		{
-			context.sendBroadcast(new Intent("com.htc.music.musicservicecommand.play"));
+			context.sendBroadcast(new Intent("com.htc.music.musicservicecommand.previous"));
+//			context.sendBroadcast(new Intent("com.htc.music.musicservicecommand.togglepause"));
 		}
 	}
 	
@@ -110,7 +111,7 @@ public class MusicManager {
 			pos2 = html.indexOf(",", pos);
 			String albumId = html.substring(pos + 11, pos2);
 			int album_id = Integer.parseInt(albumId);
-			image = "http://image.bugsm.co.kr/album/images/200/"
+			image = "http://image.bugsm.co.kr/album/images/original/"
 					+ (album_id / 100) + "/" + albumId + ".jpg";
 
 			return image;
