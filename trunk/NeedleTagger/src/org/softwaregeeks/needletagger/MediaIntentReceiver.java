@@ -64,7 +64,18 @@ public class MediaIntentReceiver extends BroadcastReceiver {
 		String album = null;
 		Long albumId = null;
 		
-		if( intentAction.startsWith("com.htc.music") || intentAction.startsWith("com.android.music") )
+		if( intentAction.startsWith("com.android.music") )
+		{
+			id = (long) intent.getLongExtra("id",0L);
+			track = intent.getStringExtra("track");
+			artist = intent.getStringExtra("artist");
+			album = intent.getStringExtra("album");
+			albumId = (long) intent.getLongExtra("albumid",0L);
+			
+			if( id != 0L )
+				isPlaying = true;
+		}
+		else if ( intentAction.startsWith("com.htc.music") )
 		{
 			id = (long) intent.getIntExtra("id",0);
 			track = intent.getStringExtra("track");
@@ -72,15 +83,6 @@ public class MediaIntentReceiver extends BroadcastReceiver {
 			album = intent.getStringExtra("album");
 			albumId = (long) intent.getIntExtra("albumid",0);
 			isPlaying = intent.getBooleanExtra("isplaying",false);
-			
-			if( intentAction.startsWith("com.android.music") && id != 0L )
-				isPlaying = false;
-		}
-		else if( intentAction.startsWith("com.sec.android") )
-		{
-		}
-		else
-		{
 		}
 		
 		String path = MediaContentProviderHelper.getSongPath(context,track);

@@ -216,11 +216,11 @@ public class EditorActivity extends Activity {
 		albumEditText.setInputType(0);
 		
 		okButton = (Button) findViewById(R.id.ok);
-		okButton.setTypeface(ConfigurationManager.getFont(getAssets()));
+//		okButton.setTypeface(ConfigurationManager.getFont(getAssets()));
 		okButton.setOnClickListener(onClickListener);
 
 		alsongButton = (Button) findViewById(R.id.alsong);
-		alsongButton.setTypeface(ConfigurationManager.getFont(getAssets()));
+//		alsongButton.setTypeface(ConfigurationManager.getFont(getAssets()));
 		alsongButton.setOnClickListener(onClickListener);
 	}
 

@@ -34,11 +34,12 @@ public class ConfigurationManager {
 	
 	public static Typeface getFont(AssetManager assetManager)
 	{
-		if( font != null )
-			return font;
-		
-		font = Typeface.createFromAsset(assetManager,"NanumGothicBold.otf");
-		return font;
+		return null;
+//		if( font != null )
+//			return font;
+//		
+//		font = Typeface.createFromAsset(assetManager,"NanumGothicBold.otf");
+//		return font;
 	}
 	
 	public static void checkLoad(Context context)

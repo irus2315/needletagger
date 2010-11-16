@@ -39,22 +39,12 @@
 				<action android:name="com.android.music.playbackcomplete" />
 				<action android:name="com.android.music.asyncopencomplete" />
 				<action android:name="com.android.music.musicservicecommand.pause" />
-
-				<!-- HTC -->
 				<action android:name="com.htc.music.playstatechanged" />
 				<action android:name="com.htc.music.metachanged" />
 				<action android:name="com.htc.music.queuechanged" />
 				<action android:name="com.htc.music.playbackcomplete" />
 				<action android:name="com.htc.music.asyncopencomplete" />
 				<action android:name="com.htc.music.musicservicecommand.pause" />
-				
-				<!-- Samsung -->
-				<action android:name="musicPlayer.service.updateMediaInfo" />
-				<action android:name="com.sec.android.app.music.metachanged" />
-				<action android:name="com.sec.android.app.music.queuechanged" />
-				<action android:name="com.sec.android.app.music.playbackcomplete" />
-				<action android:name="com.sec.android.app.music.asyncopencomplete" />
-				<action android:name="com.sec.android.app.music.musicservicecommand.pause" />
 			</intent-filter>
 		</receiver>
 		

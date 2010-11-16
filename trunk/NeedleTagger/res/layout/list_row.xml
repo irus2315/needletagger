@@ -21,7 +21,7 @@
 		<TextView
 			android:id="@+id/track"
 			android:textSize="16dp"
-			android:layout_marginTop="10dp"
+			android:layout_marginTop="5dp"
 			android:layout_marginLeft="5dp"
 			android:layout_toRightOf="@+id/nowplay"
 			android:layout_height="wrap_content"

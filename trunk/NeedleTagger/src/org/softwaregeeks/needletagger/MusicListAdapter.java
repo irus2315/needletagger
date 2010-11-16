@@ -65,8 +65,8 @@ public class MusicListAdapter extends BaseAdapter
     		holder.nowPlayImageView = (ImageView) v.findViewById(R.id.nowplay);
     		holder.trackTextView = (TextView) v.findViewById(R.id.track);
     		holder.artistTextView = (TextView) v.findViewById(R.id.artist);
-    		holder.trackTextView.setTypeface(typeface);
-    		holder.artistTextView.setTypeface(typeface);
+//    		holder.trackTextView.setTypeface(typeface);
+//    		holder.artistTextView.setTypeface(typeface);
     		
     		v.setTag(holder);
     	}
