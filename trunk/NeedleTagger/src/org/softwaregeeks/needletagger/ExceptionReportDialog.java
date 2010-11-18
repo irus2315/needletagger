@@ -4,6 +4,7 @@ import org.softwaregeeks.needletagger.common.LogManager;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
@@ -14,19 +15,29 @@ public class ExceptionReportDialog extends Activity {
 	private Handler processHandler;
 
 	private String stackTrace;
-	ProgressDialog progressDialog;
+	private ProgressDialog progressDialog;
 	private Activity activity;
-
+	private Context context;
+	
+	public ExceptionReportDialog(Context context, String stackTrace) {
+		this.stackTrace = stackTrace;
+		this.context = context;
+		createLoginDialog();
+		setHandler();
+		sendMessage();
+	}
+	
 	public ExceptionReportDialog(Activity activity, String stackTrace) {
 		this.activity = activity;
 		this.stackTrace = stackTrace;
+		this.context = (Context)activity;
 		createLoginDialog();
 		setHandler();
 		sendMessage();
 	}
 
 	public void createLoginDialog() {
-		progressDialog = new ProgressDialog(activity);
+		progressDialog = new ProgressDialog(context);
 		progressDialog.setTitle(activity.getString(R.string.exceptionTitleCaption));
 		progressDialog.setMessage(activity.getString(R.string.exceptionCaption));
 		progressDialog.show();

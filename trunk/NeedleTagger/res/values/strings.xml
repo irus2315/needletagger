@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Needle\nTagger</string>
+	<string name="app_name">NeedleTagger</string>
 	
 	<string name="configurationCategory1">오류</string>
 	<string name="configurationCategory2">설정</string>

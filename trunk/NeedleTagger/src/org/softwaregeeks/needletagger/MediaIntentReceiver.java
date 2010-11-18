@@ -18,42 +18,51 @@ public class MediaIntentReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
-		ConfigurationManager.checkLoad(context);
-		
-		Music music = getMusic(context, intent);
-		if( music.getId() == 0L )
-			return;
-		
-		if(music.isPlaying())
-			ConfigurationManager.getNowPlayingMusic().set(music);
-		else
-			ConfigurationManager.getNowPlayingMusic().reset();
-		
-		context.sendBroadcast(new Intent(MusicListActivity.UPDATED_INTENT));
-		
-		// Notification Bar
-		//
-		if( !ConfigurationManager.isPlayerLink() )
-			return;
-		
-		if(music.isPlaying())
+		try
 		{
-			Intent sendIntent = new Intent(context,EditorActivity.class);
-			sendIntent.putExtra("id",music.getId());
-			sendIntent.putExtra("track",music.getTrack());
-			sendIntent.putExtra("artist",music.getArtist());
-			sendIntent.putExtra("album",music.getAlbum());
-			sendIntent.putExtra("path",music.getPath());
-			sendIntent.putExtra("albumId",music.getAlbumId());
-			onNotify(context, sendIntent, music);
+			ConfigurationManager.checkLoad(context);
+			
+			Music music = getMusic(context, intent);
+			if( music == null )
+				return;
+			
+			if( music.getId() == 0L )
+				return;
+			
+			if(music.isPlaying())
+				ConfigurationManager.getNowPlayingMusic().set(music);
+			else
+				ConfigurationManager.getNowPlayingMusic().reset();
+			
+			context.sendBroadcast(new Intent(MusicListActivity.UPDATED_INTENT));
+			
+			// Notification Bar
+			//
+			if( !ConfigurationManager.isPlayerLink() )
+				return;
+			
+			if(music.isPlaying())
+			{
+				Intent sendIntent = new Intent(context,EditorActivity.class);
+				sendIntent.putExtra("id",music.getId());
+				sendIntent.putExtra("track",music.getTrack());
+				sendIntent.putExtra("artist",music.getArtist());
+				sendIntent.putExtra("album",music.getAlbum());
+				sendIntent.putExtra("path",music.getPath());
+				sendIntent.putExtra("albumId",music.getAlbumId());
+				onNotify(context, sendIntent, music);
+			}
+			else
+			{
+				offNotify(context);
+			}
 		}
-		else
-		{
-			offNotify(context);
+		catch (Exception e) {
+			//TODO
 		}
 	}
 	
-	private Music getMusic(Context context, Intent intent)
+	private Music getMusic(Context context, Intent intent) throws Exception
 	{
 		String intentAction = intent.getAction();
 		boolean isPlaying = false;
