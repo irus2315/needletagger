@@ -24,6 +24,7 @@ public class Music {
 		if( music == null )
 			return;
 		
+		reset();
 		set(music);
 	}
 	

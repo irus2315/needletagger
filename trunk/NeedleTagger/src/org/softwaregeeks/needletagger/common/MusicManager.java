@@ -57,7 +57,7 @@ public class MusicManager {
 			tag.setField(FieldKey.ARTIST, music.getArtist());
 			tag.setField(FieldKey.ALBUM, music.getAlbum());
 			
-			if( music.getArtwork() != null )
+			if( music.getArtwork() != null && music.getArtwork().getWidth() > 0 )
 			{
 				Artwork artwork = new Artwork();
 				artwork.setFromBitmap(music.getArtwork());
@@ -66,7 +66,7 @@ public class MusicManager {
 					tag.deleteArtworkField();
 				
 				tag.setField(artwork);
-			}			
+			}
 			AudioFileIO.write(f);
 
 			if (music.getAlbumId() > -1) {

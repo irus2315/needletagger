@@ -2,7 +2,6 @@ package org.softwaregeeks.needletagger;
 
 import org.softwaregeeks.needletagger.alsong.AlsongLyricCrawler;
 import org.softwaregeeks.needletagger.common.ActivityHelper;
-import org.softwaregeeks.needletagger.common.ConfigurationManager;
 import org.softwaregeeks.needletagger.common.Music;
 import org.softwaregeeks.needletagger.common.MusicManager;
 
@@ -216,11 +215,9 @@ public class EditorActivity extends Activity {
 		albumEditText.setInputType(0);
 		
 		okButton = (Button) findViewById(R.id.ok);
-//		okButton.setTypeface(ConfigurationManager.getFont(getAssets()));
 		okButton.setOnClickListener(onClickListener);
 
 		alsongButton = (Button) findViewById(R.id.alsong);
-//		alsongButton.setTypeface(ConfigurationManager.getFont(getAssets()));
 		alsongButton.setOnClickListener(onClickListener);
 	}
 

@@ -2,7 +2,6 @@ package org.softwaregeeks.needletagger;
 
 import java.util.ArrayList;
 
-import org.softwaregeeks.needletagger.common.ConfigurationManager;
 import org.softwaregeeks.needletagger.common.Music;
 
 import android.content.Context;
@@ -28,7 +27,6 @@ public class MusicListAdapter extends BaseAdapter
 		this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.list = items;
 		this.layout = layout;
-		this.typeface = ConfigurationManager.getFont(context.getAssets());
 	}
 	
 	@Override
@@ -65,9 +63,6 @@ public class MusicListAdapter extends BaseAdapter
     		holder.nowPlayImageView = (ImageView) v.findViewById(R.id.nowplay);
     		holder.trackTextView = (TextView) v.findViewById(R.id.track);
     		holder.artistTextView = (TextView) v.findViewById(R.id.artist);
-//    		holder.trackTextView.setTypeface(typeface);
-//    		holder.artistTextView.setTypeface(typeface);
-    		
     		v.setTag(holder);
     	}
     	else

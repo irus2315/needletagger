@@ -4,8 +4,6 @@ import java.util.Locale;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
@@ -21,7 +19,6 @@ public class ConfigurationManager {
 	public static ConfigurationManager instance = new ConfigurationManager();
 	private static String device;
 	private static Locale systemLocale;
-	private static Typeface font;
 	private static boolean isReporting = false;
 	private static boolean isPlayerLink = false;
 	private static boolean isEnableSystemFont = false;
@@ -30,16 +27,6 @@ public class ConfigurationManager {
 	public static ConfigurationManager getInstance()
 	{
 		return instance;
-	}
-	
-	public static Typeface getFont(AssetManager assetManager)
-	{
-		return null;
-//		if( font != null )
-//			return font;
-//		
-//		font = Typeface.createFromAsset(assetManager,"NanumGothicBold.otf");
-//		return font;
 	}
 	
 	public static void checkLoad(Context context)
