@@ -4,7 +4,7 @@
 	android:key="preference">
 	
 	<PreferenceCategory
-		android:title="@string/configurationCategory1">
+		android:title="@string/configurationCategory2">
 		<CheckBoxPreference
 			android:key="playerLink"
 			android:title="@string/configurationPlayerLinkTitle"

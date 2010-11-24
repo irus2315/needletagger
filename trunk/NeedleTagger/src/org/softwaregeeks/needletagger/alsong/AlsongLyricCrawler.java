@@ -39,8 +39,16 @@ public class AlsongLyricCrawler {
 			setHashKey(cli.getHashKey());
 			
 			result = cli.getResultXmlParsing();
-
-			//result[8]���� ���簡 ����ִ�.
+			
+			
+			if( "-1".equals(result[1]) )
+			{
+				setProcessed(false);
+				return isProcessed();
+			}
+				
+			
+			
 			setTitle(result[3]);
 			setArtist(result[4]);
 			setAlbum(result[5]);

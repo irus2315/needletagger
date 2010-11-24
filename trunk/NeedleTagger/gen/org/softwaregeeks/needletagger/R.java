@@ -115,40 +115,40 @@ containing a value of this type.
         public static final int report=0x7f030006;
     }
     public static final class string {
-        public static final int albumCaption=0x7f04000f;
-        public static final int alsong=0x7f040010;
+        public static final int albumCaption=0x7f04000d;
+        public static final int alsong=0x7f04000e;
         public static final int app_name=0x7f040000;
-        public static final int artistCaption=0x7f04000e;
+        public static final int artistCaption=0x7f04000c;
         public static final int configurationCategory1=0x7f040001;
         public static final int configurationCategory2=0x7f040002;
-        public static final int configurationFontSummary=0x7f040008;
-        public static final int configurationFontTitle=0x7f040007;
+        public static final int configurationFontSummary=0x7f040021;
+        public static final int configurationFontTitle=0x7f040020;
         public static final int configurationPlayerLinkSummary=0x7f040006;
         public static final int configurationPlayerLinkTitle=0x7f040005;
-        public static final int configurationReportDialogSummary=0x7f04000a;
-        public static final int configurationReportDialogTitle=0x7f040009;
+        public static final int configurationReportDialogSummary=0x7f040008;
+        public static final int configurationReportDialogTitle=0x7f040007;
         public static final int configurationReportSummary=0x7f040004;
         public static final int configurationReportTitle=0x7f040003;
-        public static final int dialogArtworkCaption=0x7f040013;
-        public static final int dialogArtworkNoCaption=0x7f040014;
-        public static final int dialogCancelCaption=0x7f040016;
-        public static final int dialogInformationCaption=0x7f040018;
-        public static final int dialogInformationNoCaption=0x7f040019;
-        public static final int dialogOkCaption=0x7f040015;
-        public static final int dialogProcessCaption=0x7f040017;
-        public static final int dialogProcessTitleCaption=0x7f040012;
-        public static final int exceptionCaption=0x7f04001b;
-        public static final int exceptionTitleCaption=0x7f04001a;
-        public static final int keywordHint=0x7f04000b;
-        public static final int reportCancelCaption=0x7f04001e;
-        public static final int reportHintCaption=0x7f04001c;
-        public static final int reportNoMessageCaption=0x7f040021;
-        public static final int reportResultCaption=0x7f04001f;
-        public static final int reportResultFailCaption=0x7f040020;
-        public static final int reportSendCaption=0x7f04001d;
-        public static final int save=0x7f04000c;
-        public static final int saveMessage=0x7f040011;
-        public static final int titleCaption=0x7f04000d;
+        public static final int dialogArtworkCaption=0x7f040011;
+        public static final int dialogArtworkNoCaption=0x7f040012;
+        public static final int dialogCancelCaption=0x7f040014;
+        public static final int dialogInformationCaption=0x7f040016;
+        public static final int dialogInformationNoCaption=0x7f040017;
+        public static final int dialogOkCaption=0x7f040013;
+        public static final int dialogProcessCaption=0x7f040015;
+        public static final int dialogProcessTitleCaption=0x7f040010;
+        public static final int exceptionCaption=0x7f040019;
+        public static final int exceptionTitleCaption=0x7f040018;
+        public static final int keywordHint=0x7f040009;
+        public static final int reportCancelCaption=0x7f04001c;
+        public static final int reportHintCaption=0x7f04001a;
+        public static final int reportNoMessageCaption=0x7f04001f;
+        public static final int reportResultCaption=0x7f04001d;
+        public static final int reportResultFailCaption=0x7f04001e;
+        public static final int reportSendCaption=0x7f04001b;
+        public static final int save=0x7f04000a;
+        public static final int saveMessage=0x7f04000f;
+        public static final int titleCaption=0x7f04000b;
     }
     public static final class styleable {
         /** Attributes that can be used with a com_admob_android_ads_AdView.
